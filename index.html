@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Productivity Project Report</title>
+    <meta name="description" content="TaskFlow: A modern task management SaaS application to boost your productivity and streamline your workflow.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Hackathod/Employee-Productivity-Tracker-Application/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+
+</head>
+<body class="bg-gray-100 font-sans">
+    <div id="app" class="min-h-screen flex flex-col">
+        <header class="bg-indigo-600 text-white p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <h1 class="text-2xl font-bold">Employee Productivity Project Rep<span style="color: rgb(47, 255, 47);">ort</span></h1>
+                <nav>
+                    <button @click="showProfileModal = true" class="bg-indigo-500 hover:bg-indigo-400 px-4 py-2 rounded-full transition duration-300">
+                        <i class="fas fa-user mr-2"></i>Profile
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-grow container mx-auto p-4 flex gap-6">
+            <!-- Left Sidebar - Task Logging -->
+            <div class="w-1/3 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 " >Employee Task Logging</h2>
+                <form @submit.prevent="addTask" class="flex flex-col gap-4">
+                   
+                    <input v-model="newTask.title" type="text" placeholder="Task Title" class="flex-grow p-2 border rounded" required>
+                    <textarea v-model="newTask.description" placeholder="Task Description" class="p-2 border rounded" required></textarea>
+                    <input v-model="newTask.time" type="number" placeholder="Time (hours)" class="p-2 border rounded" required>
+                    <label for="text">Priority level:</label>
+                    
+                    <select v-model="newTask.priority" class="p-2 border rounded">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                
+                    <label  for="text">Task Categorization:</label>
+
+                    <select v-model="newTask.category" class="p-2 border rounded">
+                        <option value="BAU">BAU</option>
+                        <option value="Ad Hoc">Ad Hoc</option>
+                        <option value="Project-Based">Project-Based</option>
+                    </select>
+                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-500 transition duration-300">
+                        Add Task
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Dashboard - Task Display -->
+            <div class="w-2/3 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4  ">Employer Dashboard</h2>
+                <div v-if="loading" class="flex justify-center items-center py-8">
+                    <i class="fas fa-circle-notch text-4xl text-indigo-600 animate-spin"></i>
+                </div>
+                <transition-group name="task" tag="ul" class="space-y-4">
+                    <li v-for="task in tasks" :key="task.id" class="bg-gray-50 p-4 rounded-lg shadow flex justify-between items-center">
+                        <div>
+                            <h3 class="font-semibold" :class="{'line-through': task.completed}">{{ task.title }}</h3>
+                            <p class="text-sm text-gray-600">{{ task.description }}</p>
+                            <span :class="priorityClass(task.priority)" class="text-sm px-2 py-1 rounded-full">
+                                {{ task.priority }}
+                            </span>
+                            <span :class="categoryClass(task.category)" class="text-sm px-2 py-1 rounded-full ml-2">
+                                {{ task.category }}
+                            </span>
+                            <p class="text-sm text-gray-500">Time: {{ task.time }} hours</p>
+                        </div>
+                        <div class="space-x-2">
+                            <button @click="toggleTaskStatus(task)" :class="task.completed ? 'bg-green-500' : 'bg-gray-300'" class="px-3 py-1 rounded-full transition duration-300">
+                                <i class="fas" :class="task.completed ? 'fa-check' : 'fa-times'"></i>
+                            </button>
+                            <button @click="removeTask(task)" class="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-600 transition duration-300">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </li>
+                </transition-group>
+                <p v-if="tasks.length === 0 && !loading" class="text-center text-gray-500 py-8">No tasks yet. Add some tasks to get started!</p>
+            </div>
+        </main>
+
+        <footer class="bg-gray-800 text-white p-4 mt-8">
+            <div class="container mx-auto text-center">
+                <p>&copy; 2025 Employee Productivity. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Profile Modal -->
+        <div v-if="showProfileModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 modal">
+            <div class="bg-white rounded-lg p-8 max-w-md w-full relative">
+                <!-- Close Button inside Modal -->
+                <button @click="showProfileModal = false" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <h2 class="text-2xl font-semibold mb-4">User Profile</h2>
+
+                <!-- Show username if logged in -->
+                <div v-if="isLoggedIn">
+                    <p class="text-lg font-semibold">Welcome, {{ username }}</p>
+                    <button @click="logout" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 transition duration-300 w-full">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Toggle between login and register forms -->
+                <div v-if="!isLoggedIn && !isRegistering">
+                    <h3 class="text-xl font-semibold mb-4">Login</h3>
+                    <form @submit.prevent="login" class="space-y-4">
+                        <input v-model="loginForm.email" type="email" placeholder="Email" class="p-2 border rounded w-full" required>
+                        <input v-model="loginForm.password" type="password" placeholder="Password" class="p-2 border rounded w-full" required>
+                        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-500 transition duration-300 w-full">
+                            Login
+                        </button>
+                    </form>
+
+                    <div class="mt-4 text-center">
+                        <p>Don't have an account? <span @click="switchToRegister" class="text-indigo-600 cursor-pointer">Register</span></p>
+                    </div>
+                </div>
+
+                <div v-if="!isLoggedIn && isRegistering">
+                    <h3 class="text-xl font-semibold mb-4">Register</h3>
+                    <form @submit.prevent="register" class="space-y-4">
+                        <input v-model="registerForm.username" type="text" placeholder="Username" class="p-2 border rounded w-full" required>
+                        <input v-model="registerForm.email" type="email" placeholder="Email" class="p-2 border rounded w-full" required>
+                        <input v-model="registerForm.password" type="password" placeholder="Password" class="p-2 border rounded w-full" required>
+                        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-500 transition duration-300 w-full">
+                            Register
+                        </button>
+                    </form>
+
+                    <div class="mt-4 text-center">
+                        <p>Already have an account? <span @click="switchToLogin" class="text-indigo-600 cursor-pointer">Login</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.37/dist/vue.global.prod.js"></script>
+    <script src="/Hackathod/Employee-Productivity-Tracker-Application/script.js"></script>
+   
+</body>
+</html>
