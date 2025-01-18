@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #151515;
+  --accent: #818cf8;
+  --background: #111111;
+  --card: #1e1e1e;
+  --text: #e2e8f0;
+  --text-light: #94a3b8;
+}
+/* Keyframe animation for flashing background */
+@keyframes flashBackground {
+  0% {
+    background-color: #ff0000; /* Red color */
+  }
+  50% {
+    background-color: #000000; /* Orange color */
+  }
+  100% {
+    background-color: #ff0000; /* Red color */
+  }
+}
+.inputboxfortask {
+  background-color: #ffffff !important;
+  color: black;
+}
+.inputboxfortask option {
+  background-color: #ffffff !important;
+  color: black;
+}
+/* For webkit browsers (Chrome, Safari, etc.) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: rgb(255, 0, 0);
+ color: #000000;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+
+.itscreatetask{
+  background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(12,162,181,1) 77%);
+}
+
+.headercolor{
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(12,162,181,1) 77%);
+}
+
+
+.headercolor2{
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 20%, rgba(12,162,181,1) 100%);
+}
+
+.allemp{
+  display:block;
+  justify-content: center;
+  color: black;
+  margin-left: 44%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 27px;
+  margin-top: 70px;
+  
+}
+
+.flash-warning {
+  animation: flashBackground 1s infinite;
+}
+
+* {
+  color: var(--text);
+}
+
+body {
+  background-color: var(--background);
+}
+
+#tasklist::-webkit-scrollbar {
+  background-color: transparent;
+  height: 5px;
+}
+
+#tasklist::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 50px;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+input,
+textarea {
+  background-color: #222222 !important;
+  border-color: #333333 !important;
+  color: var(--text) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-light) !important;
+}
+
+
+.tasklistcolor{
+  background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(181,12,49,1) 77%);
+}
+
+
+
+.bg-gradient-to-b {
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(12,162,181,1) 77%);
+}
+
