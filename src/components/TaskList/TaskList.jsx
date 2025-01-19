@@ -24,10 +24,11 @@ const TaskList = ({ data }) => {
   }
 
   return (
-    <div className=' p-6 rounded-xl shadow-md shadow-black/10 mt-6'>
-      <h2 className='text-xl font-bold text-black mb-6'>Your Tasks</h2>
-      <div id='tasklist' className='  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-        {data?.tasks?.map((task, id) => (
+    
+    <div className='tasklistcolor22 p-6 rounded-xl shadow-md shadow-black/10 mt-6'>
+      <h2 className='text-xl font-bold text-gray-100 mb-6'>Your Tasks</h2>
+      <div id='tasklist' className=' flex items-center gap-6 overflow-x-auto pb-4'>
+      {data?.tasks?.map((task, id) => (
           <div key={id} className="task-box">
             {renderTask(task, id)}
             <div className="w-full mt-4">
@@ -40,6 +41,7 @@ const TaskList = ({ data }) => {
           </div>
         ))}
       </div>
+      
     </div>
   )
 }

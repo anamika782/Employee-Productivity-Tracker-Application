@@ -122,6 +122,11 @@ textarea::placeholder {
 background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(181,12,49,1) 77%);
 }
 
+.tasklistcolor22{
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgb(155, 155, 155) 77%);
+}
+
 
 
 .bg-gradient-to-b {
