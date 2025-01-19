@@ -11,18 +11,158 @@
   <link rel="icon" type="image/svg+xml" href="https://cdn-icons-png.freepik.com/512/2617/2617420.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Employee Productivity Tracker</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+  <style>
+    /* Hiding Scrollbar */
+    body {
+      overflow: hidden;
+    }
 
-    <!-- Add this inside the <head> tag -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
- 
-  
+    /* Floating Button */
+    .ai-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .ai-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* Popup Overlay */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-overlay.active {
+      display: flex;
+    }
+
+    /* Popup Content */
+    .popup-content {
+      background: #ffffff;
+      border-radius: 10px;
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+      height: 80%;
+      animation: popupAnimation 0.3s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: auto; /* Allow scrolling inside the popup */
+    }
+
+    @keyframes popupAnimation {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Close Button */
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgb(0, 0, 0);
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      color: #ffffff;
+      z-index: 1100;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .close-button:hover {
+      background: darkred;
+    }
+
+    /* iFrame Styling */
+    .ai-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 
 <body>
   <div id="root"></div>
+
+  <!-- AI Assistant Button -->
+  <button class="ai-button" id="ai-button">
+    <img
+      src="https://cdn-icons-png.freepik.com/512/2617/2617420.png"
+      alt="AI"
+      class="ai-icon"
+    />
+  </button>
+
+  <!-- Popup Overlay -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup-content">
+      <!-- Close Button -->
+      <button class="close-button" id="close-button">&times;</button>
+      <!-- AI Content -->
+      <iframe src="/Ai.html" class="ai-iframe" title="AI Assistant"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const aiButton = document.getElementById('ai-button');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const closeButton = document.getElementById('close-button');
+
+    // Show popup on button click
+    aiButton.addEventListener('click', () => {
+      popupOverlay.classList.add('active');
+    });
+
+    // Close popup on close button click
+    closeButton.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+    });
+
+    // Close popup on overlay click
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.classList.remove('active');
+      }
+    });
+  </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
