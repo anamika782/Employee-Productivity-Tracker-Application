@@ -142,6 +142,11 @@ background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(181,12,49,1) 77%);
 background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgb(178, 12, 181) 77%);
 }
 
+.new11{
+  background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0, 255, 76, 0.267) 77%);
+}
+
 .new2{
   background: rgb(2,0,36);
 background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgb(0, 255, 76) 77%);
@@ -162,4 +167,9 @@ background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgb(227, 0, 0) 77%);
  border-radius: 8px;
  color: white;
  padding: 10px;
+}
+
+.new67{
+  background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgb(214, 214, 214) 77%);
 }

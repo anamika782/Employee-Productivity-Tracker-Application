@@ -19,7 +19,7 @@ const AcceptTask = ({ element }) => {
   }
 
   return (
-    <div className='new1 flex-shrink-0 w-[300px]  border-2 border-yellow-900 rounded-xl p-5 hover:shadow-md transition-all duration-200'>
+    <div className='new11 flex-shrink-0 w-[300px]  border-2 border-yellow-900 rounded-xl p-5 hover:shadow-md transition-all duration-200'>
       <div className='flex justify-between items-center'>
         <span className='px-3 py-1 bg-yellow-900/50 text-yellow-300 rounded-lg text-sm font-medium'>{element.category}</span>
         <span className='text-sm text-gray-400'>{element.taskDate}</span>
