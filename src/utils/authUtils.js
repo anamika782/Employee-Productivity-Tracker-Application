@@ -1,6 +1,6 @@
 export const validateCredentials = (email, password, userData) => {
     // Check for admin
-    if (email === "admin@example.com" && password === "123") {
+    if (email === "admin@gmail.com" && password === "masai") {
       return {
         isValid: true,
         role: "admin",

@@ -1,9 +1,9 @@
 const employees = [
   {
       "id": 1,
-      "firstName": "Satyajit",
-      "email": "employee1@example.com",
-      "password": "123",
+      "firstName": "Narsi",
+      "email": "narsi@gmail.com",
+      "password": "masai",
       "taskCounts": {
           "active": 2,
           "newTask": 1,
@@ -37,9 +37,9 @@ const employees = [
   },
   {
       "id": 2,
-      "firstName": "Aayush",
-      "email": "employee2@example.com",
-      "password": "123",
+      "firstName": "Sameer",
+      "email": "sameer@gmail.com",
+      "password": "masai",
       "taskCounts": {
           "active": 1,
           "newTask": 0,
@@ -71,9 +71,9 @@ const employees = [
   },
   {
       "id": 3,
-      "firstName": "Karan",
-      "email": "employee3@example.com",
-      "password": "123",
+      "firstName": "Eragala",
+      "email": "eragala@gmail.com",
+      "password": "masai",
       "taskCounts": {
           "active": 2,
           "newTask": 1,
@@ -116,8 +116,8 @@ const employees = [
   {
       "id": 4,
       "firstName": "Faiz",
-      "email": "employee4@example.com",
-      "password": "123",
+      "email": "faiz@gmail.com",
+      "password": "masai",
       "taskCounts": {
           "active": 2,
           "newTask": 1,
@@ -133,7 +133,7 @@ const employees = [
               "taskTitle": "Write documentation",
               "taskDescription": "Update the project documentation",
               "taskDate": "2024-10-13",
-              "category": "Documentation"
+              "category": "BAU"
           },
           {
               "active": true,
@@ -141,17 +141,17 @@ const employees = [
               "completed": false,
               "failed": false,
               "taskTitle": "Set up CI/CD",
-              "taskDescription": "Implement continuous integration pipeline",
+              "taskDescription": "Implement continuous",
               "taskDate": "2024-10-11",
-              "category": "DevOps"
+              "category": "BAU"
           }
       ]
   },
   {
       "id": 5,
-      "firstName": "Swayam",
-      "email": "employee5@example.com",
-      "password": "123",
+      "firstName": "anamika",
+      "email": "anamika@gmail.com",
+      "password": "masai",
       "taskCounts": {
           "active": 2,
           "newTask": 1,
@@ -165,7 +165,7 @@ const employees = [
               "completed": false,
               "failed": false,
               "taskTitle": "UI redesign",
-              "taskDescription": "Redesign the user interface for better UX",
+              "taskDescription": "Redesign the user interface",
               "taskDate": "2024-10-14",
               "category": "Design"
           },
@@ -175,7 +175,7 @@ const employees = [
               "completed": true,
               "failed": false,
               "taskTitle": "Deploy new build",
-              "taskDescription": "Deploy the latest build to production",
+              "taskDescription": "Deploy all ",
               "taskDate": "2024-10-09",
               "category": "DevOps"
           },
@@ -185,7 +185,7 @@ const employees = [
               "completed": false,
               "failed": false,
               "taskTitle": "Client feedback",
-              "taskDescription": "Gather feedback from clients after product launch",
+              "taskDescription": "Gather feedback from clients",
               "taskDate": "2024-10-12",
               "category": "Support"
           }
@@ -196,8 +196,8 @@ const employees = [
 
 const admin = [{
   "id": 1,
-  "email": "admin@example.com",
-  "password": "123"
+  "email": "admin@gmail.com",
+  "password": "masai"
 }];
 
 export const setLocalStorage = () => {

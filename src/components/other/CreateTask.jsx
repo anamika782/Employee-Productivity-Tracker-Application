@@ -10,6 +10,7 @@ const CreateTask = () => {
     assignTo: "",
     category: "",
     priority: "Low", // Default value for priority
+    employeeMessage: "", // New state for employee message
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -29,6 +30,7 @@ const CreateTask = () => {
     category: formData.category,
     priority: formData.priority, // Include priority in task creation
     taskDescription: formData.taskDescription,
+    employeeMessage: formData.employeeMessage, // Include employee message
     active: false,
     newTask: true,
     failed: false,
@@ -87,7 +89,7 @@ const CreateTask = () => {
               onChange={handleInputChange}
               className="inputboxfortask w-4/5 px-4 py-2 rounded-lg border "
               type="text"
-              placeholder="Make a UI design"
+              placeholder="write title ..."
               required
             />
           </div>
@@ -165,9 +167,21 @@ const CreateTask = () => {
             required
             placeholder="Write description of task..."
           />
+          
+          <label className="block text-sm font-medium text-white mb-1 mt-4">
+            Employee Message (Regarding Previous Performance)
+          </label>
+          <textarea
+            name="employeeMessage"
+            value={formData.employeeMessage}
+            onChange={handleInputChange}
+            className="inputboxfortask w-full px-4 py-2 h-44 rounded-lg border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all resize-none"
+            placeholder="Write a message about employee's performance..."
+          />
+          
           <button
             type="submit"
-            className="itscreatetask w-full mt-4 bg-emerald-500  hover:bg-emerald-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
+            className="itscreatetask w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
           >
             Create Task
           </button>

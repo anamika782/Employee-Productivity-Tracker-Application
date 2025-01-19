@@ -10,7 +10,7 @@ import {
   LinearScale,
   BarElement,
 } from "chart.js";
-import { color } from "chart.js/helpers";
+
 
 ChartJS.register(
   ArcElement,
